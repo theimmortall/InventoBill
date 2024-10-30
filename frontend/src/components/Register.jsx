@@ -1,4 +1,4 @@
-// src/components/Register.js
+
 import React, { useState } from 'react';
 import { register, login } from '../api/api';
 import { useNavigate } from 'react-router-dom';
@@ -42,13 +42,16 @@ const Register = () => {
         setLoading(true);
         if (isSignInMode) {
             try {
-                await login({ email: formData.email, password: formData.password });
+                await login({ 
+                    email: formData.email, 
+                    password: formData.password 
+                });
                 setSuccess(true);
                 setMessage('Login successful! Welcome back!');
                 setError('');
                 setLoading(false);
                 setFormData({ email: '', password: '', name: '', contactNumber: '' });
-                navigate('/dashboard'); // Navigate to dashboard after login
+                navigate('/'); // Navigate to dashboard after login
             } catch (error) {
                 setError('Login failed. Please check your credentials.');
                 setLoading(false);
@@ -133,7 +136,7 @@ const Register = () => {
                             required
                         />
                         <span className="password-toggle-icon" onClick={togglePasswordVisibility}>
-                            {showPassword ? '🙈' : '👁️'}
+                            {showPassword ? '🙈' : '🐵'}
                         </span>
                     </div>
 

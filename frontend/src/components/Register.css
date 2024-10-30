@@ -11,7 +11,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: black;
-    background-image: url("back3.png");
+    background-image: url("../assets/back3.png");
 }
 
 .register-container {
@@ -30,7 +30,7 @@ body {
 .welcome-section {
     flex: 1;
     /*background-color: #4cb5a3;*/
-    background-image: url("sideback1.png");
+    background-image: url("../assets/sideback1.png");
     color: white;
     display: flex;
     flex-direction: column;
