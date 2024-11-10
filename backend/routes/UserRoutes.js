@@ -1,5 +1,4 @@
 const express = require("express");
-const { resetPassword } = require('../controllers/userController');
 const {
   registerUser,
   loginUser,

@@ -1,11 +1,19 @@
-const express = require('express');
-const router = express.Router();
-const customerController = require('../controllers/customerController');
+const express = require("express");
+const {
+  createCustomer,
+  getCustomers,      
+  deleteCustomer,
+  updateCustomer    
+} = require("../controllers/customerController");
 
-router.post('/customers', customerController.createCustomer);
-router.get('/customers', customerController.getCustomerDetails);
-router.get('/customers/:id', customerController.getCustomerById);
-router.put('/customers/:id', customerController.updateCustomer);
-router.delete('/customers/:id', customerController.deleteCustomer);
+const router = express.Router();
+
+// Chain routes for the same path
+router.route("/customer")
+  .post(createCustomer)
+  .get(getCustomers);
+
+router.route("/customer/:id").delete(deleteCustomer);
+router.route("/customer/:id").put(updateCustomer);
 
 module.exports = router;

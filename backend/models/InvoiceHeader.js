@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
 // Counter model for sequence tracking
-const Counter = mongoose.model('Counter', new mongoose.Schema({
+const CounterSchema = new mongoose.Schema({
   _id: String,
   seq: { type: Number, default: 0 }
-}));
+});
+
+// Check if the model exists before defining it to avoid OverwriteModelError
+const Counter = mongoose.models.Counter || mongoose.model('Counter', CounterSchema);
 
 // Helper to get next invoice number
 async function getNextInvoiceNumber() {
@@ -33,8 +36,13 @@ const invoiceHeaderSchema = new mongoose.Schema({
 
 // Pre-save middleware for invoice number generation
 invoiceHeaderSchema.pre('save', async function (next) {
-  if (!this.invoice_no) this.invoice_no = await getNextInvoiceNumber();
+  if (!this.invoice_no) {
+    this.invoice_no = await getNextInvoiceNumber();
+  }
   next();
 });
 
-module.exports = mongoose.model('InvoiceHeader', invoiceHeaderSchema);
+// Check if the model already exists before defining it
+const InvoiceHeader = mongoose.models.InvoiceHeader || mongoose.model('InvoiceHeader', invoiceHeaderSchema);
+
+module.exports = InvoiceHeader;

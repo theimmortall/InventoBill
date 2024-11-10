@@ -10,15 +10,17 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Importing Routes
-const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./routes/UserRoutes");
 const productRoutes = require("./routes/ProductRoutes");
 const invoiceheaderRoutes = require("./routes/InvoiceHeaderRoutes");
 const CustomerRoutes = require("./routes/CustomerRoutes");
+const SupplierRoutes = require("./routes/SupplierRoutes");
 
-app.use("/api/p1", productRoutes);
-app.use("/api/v1", userRoutes);
-app.use("/api/h1", invoiceheaderRoutes);
-app.use("/api/c1", CustomerRoutes);
+app.use("/api", productRoutes);
+app.use("/api", userRoutes);
+app.use("/api", invoiceheaderRoutes);
+app.use("/api", CustomerRoutes);
+app.use("/api", SupplierRoutes);
 
 
 module.exports = app;

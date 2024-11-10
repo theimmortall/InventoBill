@@ -1,13 +1,17 @@
+
 const express = require("express");
+const router = express.Router();
 const {
   insertProduct,
-  getProductDetails
+  getProducts,      // Fetch all products function
+  deleteProduct ,
+  updateProduct,    // Delete a product function
 } = require("../controllers/productController");
-const { isAuthenticatedUser} = require("../middleware/auth");
-const router = express.Router();
 
-router.route("/insertProd").post(isAuthenticatedUser, insertProduct);
-router.route("/getProd/:id").get(isAuthenticatedUser, getProductDetails);
+router.route("/product").post(insertProduct);
+// GET route for fetching all products - Change to '/product' to match the frontend API call
+router.route("/product").get(getProducts);
 
-
+router.route("/product/:id").delete(deleteProduct);
+router.route("/product/:id").put(updateProduct);
 module.exports = router;
