@@ -18,10 +18,11 @@ export const login = async (userData) => {
     const response = await apiInstance.post('/login', userData);
     return response.data;
   } catch (error) {
-    console.error('Login error:', error.response ? error.response.data : error.message);
-    throw error;
+    console.error('Login error:', error.response?.data);
+    throw error; // Optional: rethrow to handle in calling component
   }
 };
+
 
 // Function for user registration
 export const register = async (userData) => {
@@ -165,8 +166,7 @@ export const updateSupplier = async (supplierId, supplierData) => {
   }
 };
 
-// Function to insert a customer
-export const insertPurchase= async (purchaseData) => {
+export const insertPurchase = async (purchaseData) => {
   try {
     const response = await apiInstance.post('/purchase', purchaseData);
     return response.data;
@@ -178,14 +178,13 @@ export const insertPurchase= async (purchaseData) => {
 
 export const getPurchases = async () => {
   try {
-    const response = await apiInstance.get('/purchase');  // Fetches all products
-    return response.data.purchases; // Adjust this based on the response structure
+    const response = await apiInstance.get('/purchase');
+    return response.data.purchases;
   } catch (error) {
     console.error('Get purchase error:', error.response ? error.response.data : error.message);
     throw error;
   }
 };
-
 
 export const deletePurchase = async (purchaseId) => {
   try {
@@ -197,7 +196,6 @@ export const deletePurchase = async (purchaseId) => {
   }
 };
 
-// Function to update a customer
 export const updatePurchase = async (purchaseId, purchaseData) => {
   try {
     const response = await apiInstance.put(`/purchase/${purchaseId}`, purchaseData);
@@ -207,4 +205,3 @@ export const updatePurchase = async (purchaseId, purchaseData) => {
     throw error;
   }
 };
-

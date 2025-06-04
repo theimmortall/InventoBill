@@ -7,6 +7,7 @@ import { LuAlertTriangle } from "react-icons/lu";
 import { BsGraphUp, BsPeople, BsFileText, BsGraphDown } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { TiShoppingCart } from "react-icons/ti";
+import { GoPeople } from "react-icons/go";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -36,7 +37,7 @@ const Sidebar = () => {
           <StyledLink>Customer</StyledLink>
         </SidebarNavItem>
         <SidebarNavItem as={Link} to="/supplier">
-          <SidebarIcon><BsPeople /></SidebarIcon>
+          <SidebarIcon><GoPeople /></SidebarIcon>
           <StyledLink>Supplier</StyledLink>
         </SidebarNavItem>
         <SidebarNavItem as={Link} to="/purchase">

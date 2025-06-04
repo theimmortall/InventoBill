@@ -12,10 +12,12 @@ const purchaseSchema = new mongoose.Schema({
     purchase_date: {
         type: Date,
         required: true,
+        default: Date.now,
     },
     total_amount: {
         type: Number,
         required: true,
+        min: 0,
     }
 });
 

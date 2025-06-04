@@ -1,10 +1,9 @@
 const User = require("../models/User");
 const ErrorHandler = require("../utils/errorHandler");
 const sendToken = require("../utils/jwtToken");
-const crypto = require("crypto");
 
 // Register User
-exports.registerUser = async (req, res, next) => {
+exports.registerUser = async (req, res) => {
   const { name, email, password, contactNumber } = req.body;
   const user = await User.create({
     name,
@@ -33,10 +32,14 @@ exports.loginUser = async (req, res, next) => {
   }
 
   sendToken(user, 200, res);
+  console.log("Input password:", password);
+  console.log("Stored password:", user.password);
+  console.log("Match result:", isPasswordMatched);
+
 };
 
 // Logout User
-exports.logout = async (req, res, next) => {
+exports.logout = async (res) => {
   res.cookie("token", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
@@ -48,7 +51,7 @@ exports.logout = async (req, res, next) => {
 };
 
 // Get User Details
-exports.getUserDetails = async (req, res, next) => {
+exports.getUserDetails = async (req, res) => {
   const user = await User.findById(req.user.id);
   res.status(200).json({
     success: true,

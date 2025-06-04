@@ -15,12 +15,13 @@ const productRoutes = require("./routes/ProductRoutes");
 const invoiceheaderRoutes = require("./routes/InvoiceHeaderRoutes");
 const CustomerRoutes = require("./routes/CustomerRoutes");
 const SupplierRoutes = require("./routes/SupplierRoutes");
+const PurchaseRoutes = require("./routes/PurchaseRoutes");
 
 app.use("/api", productRoutes);
 app.use("/api", userRoutes);
 app.use("/api", invoiceheaderRoutes);
 app.use("/api", CustomerRoutes);
 app.use("/api", SupplierRoutes);
-
+app.use("/api", PurchaseRoutes);
 
 module.exports = app;
