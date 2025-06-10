@@ -3,7 +3,7 @@ import { SidebarContainer, SidebarHeader, SidebarNav, SidebarNavItem, StyledLink
 import { AiOutlineProduct } from "react-icons/ai";
 import { MdOutlineInventory } from "react-icons/md";
 import logo from "../assets/logo3.png";
-import { LuAlertTriangle } from "react-icons/lu";
+import { LuTriangleAlert } from 'react-icons/lu';
 import { BsGraphUp, BsPeople, BsFileText, BsGraphDown } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { TiShoppingCart } from "react-icons/ti";
@@ -57,7 +57,7 @@ const Sidebar = () => {
           <StyledLink>Report</StyledLink>
         </SidebarNavItem>
         <SidebarNavItem as={Link} to="/admin/alert">
-          <SidebarIcon><LuAlertTriangle /></SidebarIcon>
+          <SidebarIcon><LuTriangleAlert /></SidebarIcon>
           <StyledLink>Alert</StyledLink>
         </SidebarNavItem>
       </SidebarNav>
