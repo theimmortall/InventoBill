@@ -5,22 +5,25 @@ export const SidebarContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: ${({ isOpen }) => (isOpen ? '250px' : '80px')};
-  width: 250px;
-  height: 100%;
-  background-color: black; /* Dark blue background  #2c3e50 */
-  color: white;
-  overflow-y: auto; /* Enable vertical scrolling */
-  padding-top: 60px;
-  transition: width 0.3s ease; /* Smooth width transition */
-  z-index: 100; /* Ensure sidebar stays above content */
+  height: 100vh;
+  width: ${({ $isOpen }) => ($isOpen ? '250px' : '64px')};
+  background: #000;
+  color: #fff;
+  transition: width 0.3s;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SidebarHeader = styled.div`
-  padding: 20px;
+  padding: 20px 0 20px 0;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const SidebarNav = styled.ul`
@@ -29,36 +32,48 @@ export const SidebarNav = styled.ul`
 `;
 
 export const SidebarNavItem = styled.li`
-  text-decoration:none;
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  font-size: 18px;
-  border-bottom: 1px solid #34495e; /* Darker border */
-  transition: background-color 0.3s ease;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #34495e;
   &:hover {
-    background-color: #34495e; /* Darker background on hover */
+    background-color: #34495e;
   }
 `;
 
 export const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: #4cb5a3;
-  margin-left: 10px;
-`;
-
-export const SidebarIcon = styled.div`
-  color: white;  
-  font-size: 1.3rem; 
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-right: 10px; 
+  justify-content: center; /* Center icon and text horizontally */
+  gap: ${({ $isOpen }) => ($isOpen ? '10px' : '0')};
+  color: #4cb5a3;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  padding: 18px 0;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: gap 0.2s, padding 0.2s, background 0.2s;
+  cursor: pointer;
+  &:hover {
+    background-color: #34495e;
+    color: #fff;
+  }
+`;
+
+export const SidebarIcon = styled.span`
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Always left-align */
+  min-width: 24px;
 `;
 
 export const Logo = styled.img`
-  width: 80%;
+  width: 80px;
   height: auto;
+  margin: 0 auto;
+  display: block;
 `;
 
 export const ToggleButton = styled.div`
@@ -80,4 +95,17 @@ export const ToggleIcon = styled.span`
   font-size: 20px;
   transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
   transition: transform 0.3s ease;
+`;
+
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  background: #fff;
+  table-layout: auto;
+  @media (max-width: 700px) {
+    display: block;
+    overflow-x: auto;
+    min-width: 600px;
+  }
 `;

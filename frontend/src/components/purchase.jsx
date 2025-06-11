@@ -157,7 +157,7 @@ const Purchase = () => {
         </ModalContainer>
       )}
 
-      <Table striped bordered hover className="mt-4" style={{ borderRadius: '10px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
+      <Table striped bordered hover className="mt-4" style={{ width: '100%', tableLayout: 'auto', borderRadius: '10px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
         <thead style={{ backgroundColor: '#4cb5a3', color: '#fff' }}>
           <tr>
             <th>S.No</th>

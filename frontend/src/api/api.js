@@ -205,3 +205,25 @@ export const updatePurchase = async (purchaseId, purchaseData) => {
     throw error;
   }
 };
+
+export const getStock = async () => {
+  try {
+    const response = await apiInstance.get('/stock');
+    return response.data.stock || [];
+  } catch (error) {
+    if (error.response && error.response.status === 404) return [];
+    console.error('Get stock error:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+};
+
+export const getAlerts = async () => {
+  try {
+    const response = await apiInstance.get('/alert');
+    return response.data.alerts || [];
+  } catch (error) {
+    if (error.response && error.response.status === 404) return [];
+    console.error('Get alerts error:', error.response ? error.response.data : error.message);
+    throw error;
+  }
+};

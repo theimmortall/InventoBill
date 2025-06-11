@@ -1,38 +1,24 @@
 const InvoiceHeader = require('../models/InvoiceHeader');
 
-// Create a new invoice
-exports.createInvoice = async (req, res) => {
+// Get all invoices
+exports.getAllInvoices = async (req, res) => {
   try {
-    const invoice = new InvoiceHeader(req.body);
-    await invoice.save();
-    res.status(201).json({
-      success: true,
-      message: 'Invoice created successfully',
-      data: invoice,
-    });
+    const invoices = await InvoiceHeader.find();
+    res.status(200).json({ success: true, data: invoices });
   } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: 'Error creating invoice',
-      error: error.message,
-    });
+    res.status(500).json({ success: false, message: 'Error fetching invoices', error: error.message });
   }
 };
 
-// Get all invoices
-exports.getInvoices = async (req, res) => {
+// Create a new invoice
+exports.createInvoice = async (req, res) => {
   try {
-    const invoices = await InvoiceHeader.find();
-    res.status(200).json({
-      success: true,
-      data: invoices,
-    });
+    const invoice = await InvoiceHeader.create(req.body);
+    res.status(201).json({ success: true, message: "Invoice created", data: invoice });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching invoices',
-      error: error.message,
-    });
+    // If it's a validation error, send 400, else 500
+    const status = error.name === "ValidationError" ? 400 : 500;
+    res.status(status).json({ success: false, message: 'Error creating invoice', error: error.message });
   }
 };
 
